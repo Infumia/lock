@@ -45,13 +45,28 @@ public final class RedisLock implements Lock {
     }
 
     @Override
+    public boolean acquire() {
+        return this.acquire(this.acquireTimeout);
+    }
+
+    @Override
     public CompletableFuture<Boolean> acquireAsync() {
         return this.acquireAsync(this.acquireTimeout);
     }
 
     @Override
+    public boolean acquire(final Duration timeout) {
+        return this.connection.withLock(() -> this.acquireSafe(timeout));
+    }
+
+    @Override
     public CompletableFuture<Boolean> acquireAsync(final Duration timeout) {
         return this.connection.withLockAsync(() -> this.acquireSafe(timeout));
+    }
+
+    @Override
+    public boolean renew() {
+        return this.connection.withLock(this::renewSafe);
     }
 
     @Override
@@ -67,6 +82,11 @@ public final class RedisLock implements Lock {
     @Override
     public CompletableFuture<Boolean> releaseAsync() {
         return this.connection.withLockAsync(this::releaseSafe);
+    }
+
+    @Override
+    public boolean isLocked() {
+        return this.connection.withLock(() -> this.holdingLock);
     }
 
     @Override

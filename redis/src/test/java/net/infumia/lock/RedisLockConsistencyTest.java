@@ -40,7 +40,7 @@ public final class RedisLockConsistencyTest extends RedisLockAbstractTest {
         System.out.println("Thread starting " + Thread.currentThread().getName());
         int iterations = 100;
         while (iterations-- > 0) {
-            lock.withLockAsync(accessor::access).join();
+            lock.withLock(accessor::access);
             RedisLockConsistencyTest.randomSleep();
         }
         System.out.println("Thead finished " + Thread.currentThread().getName());

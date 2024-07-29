@@ -24,19 +24,19 @@ public final class RedisLockRenewTest extends RedisLockAbstractTest {
             500L
         );
 
-        Preconditions.checkState(lock.acquireAsync().join(), "didn't acquire");
+        Preconditions.checkState(lock.acquire(), "didn't acquire");
         Thread.sleep(100L);
-        Preconditions.checkState(lock.renewAsync().join(), "didn't renew");
+        Preconditions.checkState(lock.renew(), "didn't renew");
         Thread.sleep(100L);
-        Preconditions.checkState(lock.renewAsync().join(), "didn't renew");
+        Preconditions.checkState(lock.renew(), "didn't renew");
         Thread.sleep(100L);
         Preconditions.checkState(lock.release(), "didn't release");
 
-        Preconditions.checkState(lock.acquireAsync().join(), "didn't acquire");
+        Preconditions.checkState(lock.acquire(), "didn't acquire");
         Thread.sleep(1005L);
-        Preconditions.checkState(!lock.renewAsync().join(), "renewed despite acquired");
+        Preconditions.checkState(!lock.renew(), "renewed despite acquired");
 
-        Preconditions.checkState(lock.acquireAsync().join(), "didn't acquire");
+        Preconditions.checkState(lock.acquire(), "didn't acquire");
         Thread.sleep(1005L);
         Preconditions.checkState(!lock.release(), "released despite acquired");
     }
