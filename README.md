@@ -10,22 +10,19 @@ repositories {
 dependencies {
     // Base module
     implementation "net.infumia:lock:VERSION"
+
+    // Pub/Sub using Redis (Optional)
+    implementation "net.infumia:lock-redis:VERSION"
     // Required, https://mvnrepository.com/artifact/io.lettuce/lettuce-core/
     implementation "io.lettuce:lettuce-core:6.3.2.RELEASE"
 
+    // Kotlin extensions (Optional)
+    implementation "net.infumia:lock-kotlin:VERSION"
+
     // Kotlin coroutines (Optional)
-    implementation "net.infumia:pubsub-kotlin-coroutines:VERSION"
+    implementation "net.infumia:lock-kotlin-coroutines:VERSION"
     // Required, https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-coroutines-core/
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1"
-
-    // Kotlin protobuf serializer (Optional)
-    implementation "net.infumia:pubsub-kotlin-protobuf:VERSION"
-    // Required, https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-reflect/
-    implementation "org.jetbrains.kotlin:kotlin-reflect:2.0.0"
-    // Required, https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-serialization-core/
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.7.0"
-    // Required, https://mvnrepository.com/artifact/org.jetbrains.kotlinx/kotlinx-serialization-protobuf/
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.7.0"
 }
 ```
 ### Code
