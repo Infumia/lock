@@ -28,29 +28,5 @@ dependencies {
 ### Code
 ```kotlin
 fun main() {
-    val mapper = ObjectMapper()
-    val redisCredentials = RedisCredentials.just(null, "local")
-    val redisAuth = StaticCredentialsProvider(redisCredentials)
-    val redisUri = RedisURI.builder()
-        .withHost("localhost")
-        .withPort(6379)
-        .withAuthentication(redisAuth)
-        .build()
-    val client = RedisClient.create(redisUri)
-    val codecProviderJackson = CodecProviderJackson { mapper }
-    val codecProvider = CodecProviderCached(codecProviderJackson)
-    val broker = BrokerRedisNoTargetProvider(codecProvider) { client }
-    broker.initialize()
-    broker.listen<Test> {
-        println(it.test)
-    }
-    while (true) {
-        broker.send(Test("Hello World"))
-        Thread.sleep(1000L)
-    }
-    // ...
-    broker.close()
 }
-
-class Test(var test: String = "")
 ```
