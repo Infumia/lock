@@ -1,5 +1,5 @@
-import net.infumia.gradle.publish
+import net.infumia.gradle.applyPublish
 
-publish("kotlin")
+applyPublish("kotlin")
 
 dependencies { compileOnly(project(":common")) }

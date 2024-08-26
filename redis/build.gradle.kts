@@ -1,6 +1,6 @@
-import net.infumia.gradle.publish
+import net.infumia.gradle.applyPublish
 
-publish("redis")
+applyPublish("redis")
 
 dependencies {
     compileOnly(project(":common"))
