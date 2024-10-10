@@ -1,5 +1,5 @@
 [versions]
-kotlin = "2.0.20"
+kotlin = "2.0.21"
 
 [libraries]
 redis = { module = "io.lettuce:lettuce-core", version = "6.4.0.RELEASE" }
