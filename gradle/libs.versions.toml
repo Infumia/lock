@@ -2,7 +2,7 @@
 kotlin = "2.0.21"
 
 [libraries]
-redis = { module = "io.lettuce:lettuce-core", version = "6.4.0.RELEASE" }
+redis = { module = "io.lettuce:lettuce-core", version = "6.5.0.RELEASE" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.9.0" }
 guava = { module = "com.google.guava:guava", version = "33.3.1-jre" }
 
