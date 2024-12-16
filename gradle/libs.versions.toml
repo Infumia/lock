@@ -4,7 +4,7 @@ kotlin = "2.1.0"
 [libraries]
 redis = { module = "io.lettuce:lettuce-core", version = "6.5.1.RELEASE" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.9.0" }
-guava = { module = "com.google.guava:guava", version = "33.3.1-jre" }
+guava = { module = "com.google.guava:guava", version = "33.4.0-jre" }
 
 nexus-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.30.0" }
 kotlin-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
