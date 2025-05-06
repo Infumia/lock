@@ -4,7 +4,7 @@ name: databases
 
 services:
   redis:
-    image: docker.io/bitnami/redis:7.4
+    image: docker.io/bitnami/redis:8.0
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
       - REDIS_DISABLE_COMMANDS=FLUSHDB,FLUSHALL
