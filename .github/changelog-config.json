@@ -4,55 +4,40 @@
       "title": "💥 Breaking Changes",
       "labels": [
         "breaking"
-      ],
-      "priority": 1
+      ]
     },
     {
       "title": "✨ New Features",
       "labels": [
         "enhancement"
-      ],
-      "priority": 2
+      ]
     },
     {
       "title": "🐛 Bug Fixes",
       "labels": [
         "bug"
-      ],
-      "priority": 3
+      ]
     },
     {
       "title": "🛠 Maintenance",
       "labels": [
         "maintenance"
-      ],
-      "priority": 4
+      ]
     },
     {
       "title": "📚 Documentation",
       "labels": [
         "documentation"
-      ],
-      "priority": 5
+      ]
     },
     {
       "title": "🔧 Other Updates",
-      "labels": [],
-      "priority": 6
+      "labels": []
     }
   ],
   "ignore_labels": [
-    "skip-changelog"
+    "skip-changelog",
+    "dependencies"
   ],
-  "group_by": "labels",
-  "sort": "priority",
-  "change_template": "- {{subject}}{{#if author}} (by [{{author}}](https://github.com/{{author}})){{/if}}{{#if issues}} (closes {{#each issues}}[#{{this.number}}]({{this.url}}){{#unless @last}}, {{/unless}}{{/each}}){{/if}} [#[{{pullRequestNumber}}]({{pullRequestUrl}})]",
-  "highlights": {
-    "enabled": true,
-    "labels": [
-      "breaking",
-      "enhancement"
-    ],
-    "title": "🚀 Highlights"
-  }
+  "pr_template": "- #{{TITLE}} (#{{NUMBER}})"
 }
