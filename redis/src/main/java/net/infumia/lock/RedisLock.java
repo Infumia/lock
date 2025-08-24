@@ -130,8 +130,9 @@ public final class RedisLock implements Lock {
         if (!this.holdingLock) {
             return false;
         }
-        final boolean succeed =
-            !this.connection.tryRelease(Collections.singleton(this.key)).isEmpty();
+        final boolean succeed = !this.connection.tryRelease(
+            Collections.singleton(this.key)
+        ).isEmpty();
         this.holdingLock = false;
         return succeed;
     }

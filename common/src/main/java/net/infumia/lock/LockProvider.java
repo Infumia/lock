@@ -21,12 +21,12 @@ public interface LockProvider {
         final Duration expiryTime
     ) {
         return this.create(
-                identifier,
-                executor,
-                acquireTimeout,
-                expiryTime,
-                Internal.DEFAULT_ACQUIRE_RESOLUTION_MILLIS
-            );
+            identifier,
+            executor,
+            acquireTimeout,
+            expiryTime,
+            Internal.DEFAULT_ACQUIRE_RESOLUTION_MILLIS
+        );
     }
 
     default Lock create(
