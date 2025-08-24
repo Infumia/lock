@@ -3,7 +3,7 @@ name: "Update Changelog"
 "on":
   push:
     branches:
-      - "master"
+    - "master"
 jobs:
   changelog:
     name: "Update Changelog"
