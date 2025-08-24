@@ -34,7 +34,7 @@
   "ignore_labels": [
     "skip-changelog"
   ],
-  "change_template": "- {{subject}}{{#if author}} (by {{author}}){{/if}} [#{{pullRequestNumber}}]",
+  "change_template": "- {{subject}}{{#if author}} (by [{{author}}](https://github.com/{{author}})){{/if}} [#[{{pullRequestNumber}}]({{pullRequestUrl}})]",
   "group_by": "labels",
   "sort": "date"
 }
