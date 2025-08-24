@@ -10,7 +10,7 @@ jobs:
     runs-on: "ubuntu-latest"
     if: "${{ !contains(github.event.head_commit.message, 'skip-snapshot') }}"
     steps:
-    - uses: "release-drafter/release-drafter@master"
+    - uses: "release-drafter/release-drafter@v6"
       id: "release"
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

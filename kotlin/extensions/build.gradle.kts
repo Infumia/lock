@@ -4,6 +4,4 @@ plugins { kotlin("jvm") }
 
 applyPublish("kotlin")
 
-dependencies {
-    compileOnly(project(":common"))
-}
+dependencies { compileOnly(project(":common")) }
