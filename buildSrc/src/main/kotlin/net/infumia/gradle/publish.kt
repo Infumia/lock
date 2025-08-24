@@ -33,7 +33,7 @@ fun Project.applyPublish(moduleName: String? = null, javaVersion: Int = 8) {
 
         pom {
             name = projectName
-            description = ""
+            description = "A Redis-based distributed locking library for Java and Kotlin with automatic expiration and renewal."
             url = "https://github.com/Infumia/lock"
             licenses {
                 license {
