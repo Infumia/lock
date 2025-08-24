@@ -81,8 +81,34 @@ public final class RedisLockProvider implements LockProvider {
         this.clientProvider = clientProvider;
     }
 
+    /**
+     * Creates a new Redis-based lock provider with an existing connection.
+     * <p>
+     * The provider is created in an initialized state with the provided connection.
+     * You do not need to call {@link #initialize()} when using this constructor.
+     * </p>
+     *
+     * @param connection the Redis connection to use for lock operations;
+     *                  must not be null and should be open and ready for use
+     * @throws IllegalArgumentException if connection is null
+     */
+    public RedisLockProvider(final StatefulRedisConnection<String, String> connection) {
+        this.clientProvider = null;
+        this.connection = connection;
+    }
+
     @Override
     public void initialize() {
+        if (this.connection != null) {
+            throw new IllegalStateException(
+                "RedisLockProvider is already initialized. Cannot initialize twice."
+            );
+        }
+        if (this.clientProvider == null) {
+            throw new IllegalStateException(
+                "RedisLockProvider was created with a connection. Initialize is not needed."
+            );
+        }
         this.connection = this.clientProvider.provide().connect();
     }
 
