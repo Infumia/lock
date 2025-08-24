@@ -42,17 +42,15 @@
     }
   ],
   "ignore_labels": [
-    "skip-changelog"
+    "skip-changelog",
+    "dependencies"
   ],
   "group_by": "labels",
   "sort": "priority",
-  "change_template": "- {{subject}} [#[{{pullRequestNumber}}]({{pullRequestUrl}})]",
-  "highlights": {
-    "enabled": true,
-    "labels": [
-      "breaking",
-      "enhancement"
-    ],
-    "title": "🚀 Highlights"
-  }
+  "template": {
+    "issue": "- {title} {url}",
+    "pull_request": "- {title} ({number})"
+  },
+  "title_template": "## {category}",
+  "include_commit_author": false
 }
