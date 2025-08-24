@@ -1,7 +1,11 @@
 # lock
+
 [![Maven Central Version](https://img.shields.io/maven-central/v/net.infumia/lock)](https://central.sonatype.com/artifact/net.infumia/lock)
+
 ## How to Use (Developers)
+
 ### Gradle
+
 ```groovy
 repositories {
     mavenCentral()
@@ -25,8 +29,11 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1"
 }
 ```
+
 ### Code
+
 ```kotlin
 fun main() {
 }
 ```
+
