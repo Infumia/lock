@@ -2,8 +2,8 @@
 name: "Update Changelog"
 "on":
   push:
-    tags:
-    - "[0-9]+.[0-9]+.[0-9]+"
+    branches:
+      - "master"
 jobs:
   changelog:
     name: "Update Changelog"
