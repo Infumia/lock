@@ -116,8 +116,7 @@ public interface LockProvider {
     /**
      * Creates a lock with default acquire resolution time.
      * <p>
-     * This convenience method uses the default polling interval of
-     * {@value Internal#DEFAULT_ACQUIRE_RESOLUTION_MILLIS} milliseconds
+     * This convenience method uses the default polling interval of 500 milliseconds
      * for lock acquisition attempts.
      * </p>
      *
@@ -129,7 +128,6 @@ public interface LockProvider {
      * @throws IllegalStateException if the provider is not initialized
      * @throws IllegalArgumentException if any parameter is null, empty, or invalid
      * @see #create(String, Executor, Duration, Duration, long)
-     * @see Internal#DEFAULT_ACQUIRE_RESOLUTION_MILLIS
      */
     default Lock create(
         final String identifier,
@@ -151,8 +149,8 @@ public interface LockProvider {
      * <p>
      * This convenience method uses default values for:
      * <ul>
-     *   <li>Expiry time: {@link Internal#DEFAULT_EXPIRY_TIMEOUT}</li>
-     *   <li>Acquire resolution: {@value Internal#DEFAULT_ACQUIRE_RESOLUTION_MILLIS} milliseconds</li>
+     *   <li>Expiry time: 60 seconds</li>
+     *   <li>Acquire resolution: 500 milliseconds</li>
      * </ul>
      * </p>
      *
@@ -163,7 +161,6 @@ public interface LockProvider {
      * @throws IllegalStateException if the provider is not initialized
      * @throws IllegalArgumentException if any parameter is null, empty, or invalid
      * @see #create(String, Executor, Duration, Duration)
-     * @see Internal#DEFAULT_EXPIRY_TIMEOUT
      */
     default Lock create(
         final String identifier,
@@ -178,9 +175,9 @@ public interface LockProvider {
      * <p>
      * This convenience method uses default values for all timeout parameters:
      * <ul>
-     *   <li>Acquire timeout: {@link Internal#DEFAULT_ACQUIRE_TIMEOUT}</li>
-     *   <li>Expiry time: {@link Internal#DEFAULT_EXPIRY_TIMEOUT}</li>
-     *   <li>Acquire resolution: {@value Internal#DEFAULT_ACQUIRE_RESOLUTION_MILLIS} milliseconds</li>
+     *   <li>Acquire timeout: 10 seconds</li>
+     *   <li>Expiry time: 60 seconds</li>
+     *   <li>Acquire resolution: 500 milliseconds</li>
      * </ul>
      *
      * This is the simplest way to create a lock when the default timeouts are
@@ -193,7 +190,6 @@ public interface LockProvider {
      * @throws IllegalStateException if the provider is not initialized
      * @throws IllegalArgumentException if identifier is null/empty or executor is null
      * @see #create(String, Executor, Duration)
-     * @see Internal#DEFAULT_ACQUIRE_TIMEOUT
      */
     default Lock create(final String identifier, final Executor executor) {
         return this.create(identifier, executor, Internal.DEFAULT_ACQUIRE_TIMEOUT);

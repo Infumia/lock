@@ -31,7 +31,7 @@ import io.lettuce.core.RedisClient;
  *         );
  *     }
  *
- *     @Override
+ *     &#64;Override
  *     public RedisClient provide() {
  *         return client;
  *     }
