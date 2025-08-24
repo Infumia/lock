@@ -17,11 +17,10 @@ spotless {
             "prettier-plugin-java" to "2.7.4",
             "prettier-plugin-toml" to "2.0.6",
             "@prettier/plugin-xml" to "3.4.2",
-            "@prettier/plugin-properties" to "0.3.0",
+            "prettier-plugin-properties" to "0.3.0",
         )
 
-    fun FormatExtension.newPrettier(): FormatExtension.PrettierConfig =
-        prettier(prettierConfig)
+    fun FormatExtension.newPrettier(): FormatExtension.PrettierConfig = prettier(prettierConfig)
 
     isEnforceCheck = false
     lineEndings = com.diffplug.spotless.LineEnding.UNIX
@@ -62,16 +61,20 @@ spotless {
     }
 
     java {
-        target(
-            *subProjects.map { "$it/src/main/java/**/*.java" }.toTypedArray(),
-        )
+        target(*subProjects.map { "$it/src/main/java/**/*.java" }.toTypedArray())
         importOrder()
         removeUnusedImports()
         endWithNewline()
         trimTrailingWhitespace()
         newPrettier()
             .config(
-                mapOf("parser" to "java", "plugins" to listOf("prettier-plugin-java")),
+                mapOf(
+                    "parser" to "java",
+                    "tabWidth" to 4,
+                    "useTabs" to false,
+                    "printWidth" to 100,
+                    "plugins" to listOf("prettier-plugin-java"),
+                )
             )
     }
 
