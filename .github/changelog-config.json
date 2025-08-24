@@ -46,7 +46,7 @@
   ],
   "group_by": "labels",
   "sort": "priority",
-  "change_template": "- {{subject}}{{#if author}} (by [{{author}}](https://github.com/{{author}})){{/if}} [#[{{pullRequestNumber}}]({{pullRequestUrl}})]",
+  "change_template": "- {{subject}} [#[{{pullRequestNumber}}]({{pullRequestUrl}})]",
   "highlights": {
     "enabled": true,
     "labels": [
