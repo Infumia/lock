@@ -7,5 +7,6 @@
     { "title": "Documentation", "labels": ["documentation"] },
     { "title": "Dependency Updates", "labels": ["dependencies"] }
   ],
-  "ignore_labels": ["skip-changelog"]
+  "ignore_labels": ["skip-changelog"],
+  "mode": "COMMIT"
 }
