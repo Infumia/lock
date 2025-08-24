@@ -1,13 +1,13 @@
 {
   "categories": [
-    { "title": "Breaking Changes", "labels": ["breaking"] },
-    { "title": "New Features", "labels": ["enhancement"] },
-    { "title": "Bug Fixes", "labels": ["bug"] },
-    { "title": "Maintenance", "labels": ["maintenance"] },
-    { "title": "Documentation", "labels": ["documentation"] }
+    { "title": "💥 Breaking Changes", "labels": ["breaking"] },
+    { "title": "✨ New Features", "labels": ["enhancement"] },
+    { "title": "🐛 Bug Fixes", "labels": ["bug"] },
+    { "title": "🛠 Maintenance", "labels": ["maintenance"] },
+    { "title": "📚 Documentation", "labels": ["documentation"] }
   ],
   "ignore_labels": ["skip-changelog"],
-  "change_template": "- {{subject}} ({{author}}) [#{{pullRequestNumber}}]",
+  "change_template": "- {{subject}} [#{{pullRequestNumber}}]",
   "group_by": "labels",
   "sort": "date"
 }
