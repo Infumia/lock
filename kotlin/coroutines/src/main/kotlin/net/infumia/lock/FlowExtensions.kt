@@ -65,9 +65,7 @@ fun <T> Flow<T>.batchWithLock(
             lock.withLockSuspend { emit(buffer.toList()) }
             buffer.clear()
         } else {
-            withTimeoutOrNull(timeout.toMillis()) {
-                awaitCancellation()
-            }
+            withTimeoutOrNull(timeout.toMillis()) { awaitCancellation() }
 
             if (buffer.isNotEmpty()) {
                 lock.withLockSuspend { emit(buffer.toList()) }
