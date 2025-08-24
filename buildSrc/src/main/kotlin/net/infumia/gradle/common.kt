@@ -26,9 +26,5 @@ fun Project.applyCommon(javaVersion: Int = 8) {
         }
     }
 
-    tasks {
-        withType<Test> {
-            failOnNoDiscoveredTests = false
-        }
-    }
+    tasks { withType<Test> { failOnNoDiscoveredTests = false } }
 }
