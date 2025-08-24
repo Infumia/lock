@@ -1,0 +1,38 @@
+---
+name-template: "$RESOLVED_VERSION"
+tag-template: "$RESOLVED_VERSION"
+prerelease: true
+template: |
+  # 🚀 Release Notes
+
+  $CHANGES
+categories:
+- title: "💥 Breaking Changes"
+  label: "breaking"
+- title: "🆕 New Features"
+  label: "enhancement"
+- title: "🐛 Bug Fixes"
+  label: "bug"
+- title: "🛠 Maintenance"
+  label: "maintenance"
+- title: "📚 Documentation"
+  label: "documentation"
+- title: "📦 Dependency Updates"
+  label: "dependencies"
+version-resolver:
+  major:
+    labels:
+    - "breaking"
+  minor:
+    labels:
+    - "enhancement"
+  patch:
+    labels:
+    - "bug"
+    - "maintenance"
+    - "documentation"
+    - "dependencies"
+    - "security"
+exclude-labels:
+- "skip-changelog"
+- "dependencies"
