@@ -1,0 +1,11 @@
+{
+  "categories": [
+    { "title": "Breaking", "labels": ["breaking"] },
+    { "title": "New", "labels": ["enhancement"] },
+    { "title": "Bug Fixes", "labels": ["bug"] },
+    { "title": "Maintenance", "labels": ["maintenance"] },
+    { "title": "Documentation", "labels": ["documentation"] },
+    { "title": "Dependency Updates", "labels": ["dependencies"] }
+  ],
+  "ignore_labels": ["skip-changelog"]
+}

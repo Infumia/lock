@@ -5,12 +5,25 @@ name: "Update Changelog"
     branches:
     - "master"
 jobs:
-  changelog:
-    name: "Update Changelog"
+  release:
     runs-on: "ubuntu-latest"
     if: "${{ !contains(github.event.head_commit.message, 'skip-snapshot') }}"
     steps:
-    - uses: "release-drafter/release-drafter@master"
-      id: "release"
+    - name: "Checkout"
+      uses: "actions/checkout@v4"
+    - name: "Generate Changelog"
+      id: "changelog"
+      uses: "mikepenz/release-changelog-builder-action@v5"
+      with:
+        configuration: ".github/changelog-config.json"
+      env:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - name: "Create Release"
+      uses: "softprops/action-gh-release@v2"
+      with:
+        tag_name: "${{ github.ref_name }}"
+        name: "${{ github.ref_name }}"
+        body: "${{ steps.changelog.outputs.changelog }}"
+        prerelease: true
       env:
         GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
