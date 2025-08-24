@@ -9,20 +9,18 @@ jobs:
     name: "Release"
     runs-on: "ubuntu-latest"
     steps:
-    - uses: "actions/checkout@master"
-    - uses: "actions/setup-java@master"
+    - uses: "actions/checkout@v4"
+    - uses: "actions/setup-java@v4"
       with:
-        distribution: "adopt"
+        distribution: "temurin"
         java-version: "17"
-    - uses: "actions/cache@master"
+    - name: "Setup Gradle"
+      uses: "gradle/actions/setup-gradle@v4"
       with:
-        path: |
-          ~/.gradle/caches
-          ~/.gradle/wrapper
-        key: "${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}"
-        restore-keys: |
-          ${{ runner.os }}-gradle-
-    - run: |
-        [[ "${{ github.event.release.tag_name }}" =~ ^[0-9]+(\.[0-9]+)*$ ]] || exit -1
-        chmod +x gradlew
-        ./gradlew -Psign-required=true publish -Pversion="${{ github.event.release.tag_name }}" -PmavenCentralUsername="${{ secrets.MAVEN_CENTRAL_USERNAME }}" -PmavenCentralPassword="${{ secrets.MAVEN_CENTRAL_PASSWORD }}" -PsigningInMemoryKey="${{ secrets.GPG_PRIVATE_KEY_ARMORED }}" -PsigningInMemoryKeyPassword="${{ secrets.GPG_PASSPHRASE }}"
+        cache-read-only: false
+    - name: "Validate version format"
+      run: "[[ \"${{ github.event.release.tag_name }}\" =~ ^[0-9]+(\.[0-9]+)*$ ]] || exit -1"
+    - name: "Make gradlew executable"
+      run: "chmod +x gradlew"
+    - name: "Publish with Gradle"
+      run: "./gradlew -Psign-required=true publish -Pversion=\"${{ github.event.release.tag_name }}\" -PmavenCentralUsername=\"${{ secrets.MAVEN_CENTRAL_USERNAME }}\" -PmavenCentralPassword=\"${{ secrets.MAVEN_CENTRAL_PASSWORD }}\" -PsigningInMemoryKey=\"${{ secrets.GPG_PRIVATE_KEY_ARMORED }}\" -PsigningInMemoryKeyPassword=\"${{ secrets.GPG_PASSPHRASE }}\""
