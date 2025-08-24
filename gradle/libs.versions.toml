@@ -12,5 +12,4 @@ kotlin-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gr
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "2.0.0" }
 
 [plugins]
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
