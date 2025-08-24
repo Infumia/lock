@@ -50,6 +50,5 @@
   "template": {
     "issue": "- {title} {url}",
     "pull_request": "- {title} ({number})"
-  },
-  "include_commit_author": false
+  }
 }
