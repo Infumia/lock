@@ -4,51 +4,40 @@
       "title": "💥 Breaking Changes",
       "labels": [
         "breaking"
-      ],
-      "priority": 6
+      ]
     },
     {
       "title": "✨ New Features",
       "labels": [
         "enhancement"
-      ],
-      "priority": 5
+      ]
     },
     {
       "title": "🐛 Bug Fixes",
       "labels": [
         "bug"
-      ],
-      "priority": 4
+      ]
     },
     {
       "title": "🛠 Maintenance",
       "labels": [
         "maintenance"
-      ],
-      "priority": 3
+      ]
     },
     {
       "title": "📚 Documentation",
       "labels": [
         "documentation"
-      ],
-      "priority": 2
+      ]
     },
     {
       "title": "🔧 Other Updates",
-      "labels": [],
-      "priority": 1
+      "labels": []
     }
   ],
   "ignore_labels": [
     "skip-changelog",
     "dependencies"
   ],
-  "group_by": "labels",
-  "sort": "priority",
-  "template": {
-    "issue": "- {title} {url}",
-    "pull_request": "- {title} ({number})"
-  }
+  "pr_template": "- #{{TITLE}} (#{{NUMBER}})"
 }
