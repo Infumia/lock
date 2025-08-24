@@ -20,7 +20,5 @@ jobs:
         cache-read-only: false
         dependency-graph: "generate-and-submit"
         add-job-summary-as-pr-comment: "on-failure"
-    - name: "Make gradlew executable"
-      run: "chmod +x gradlew"
     - name: "Build with Gradle"
-      run: "./gradlew build"
+      run: "gradle build"
