@@ -26,8 +26,7 @@ public interface Lock {
     CompletableFuture<Boolean> isLockedAsync();
 
     default <T> CompletableFuture<T> withLockAsync(final Supplier<T> action) {
-        return this.acquireAsync()
-            .thenApply(acquired -> {
+        return this.acquireAsync().thenApply(acquired -> {
                 if (!acquired) {
                     throw new IllegalStateException("Failed to acquire the lock!");
                 }

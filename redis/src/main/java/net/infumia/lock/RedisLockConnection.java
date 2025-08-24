@@ -39,16 +39,18 @@ final class RedisLockConnection {
     List<String> tryAcquire(final Collection<String> keys) {
         if (keys.size() != 1) {
             return this.script(
-                    RedisScripts.ACQUIRE,
-                    keys,
-                    this.lockInstanceId,
-                    String.valueOf(this.expiryTimeout.toMillis())
-                );
+                RedisScripts.ACQUIRE,
+                keys,
+                this.lockInstanceId,
+                String.valueOf(this.expiryTimeout.toMillis())
+            );
         }
         final String key = keys.iterator().next();
-        final String response =
-            this.connection.sync()
-                .set(key, this.lockInstanceId, new SetArgs().nx().px(this.expiryTimeout));
+        final String response = this.connection.sync().set(
+            key,
+            this.lockInstanceId,
+            new SetArgs().nx().px(this.expiryTimeout)
+        );
         if ("OK".equals(response)) {
             return Collections.singletonList(key);
         } else {
@@ -58,20 +60,20 @@ final class RedisLockConnection {
 
     List<String> tryAcquireOrRenew(final Collection<String> keys) {
         return this.script(
-                RedisScripts.ACQUIRE_OR_RENEW_IF_OWNED,
-                keys,
-                this.lockInstanceId,
-                String.valueOf(this.expiryTimeout.toMillis())
-            );
+            RedisScripts.ACQUIRE_OR_RENEW_IF_OWNED,
+            keys,
+            this.lockInstanceId,
+            String.valueOf(this.expiryTimeout.toMillis())
+        );
     }
 
     List<String> tryRenew(final Collection<String> keys) {
         return this.script(
-                RedisScripts.RENEW_IF_OWNED,
-                keys,
-                this.lockInstanceId,
-                String.valueOf(this.expiryTimeout.toMillis())
-            );
+            RedisScripts.RENEW_IF_OWNED,
+            keys,
+            this.lockInstanceId,
+            String.valueOf(this.expiryTimeout.toMillis())
+        );
     }
 
     List<String> tryRelease(final Collection<String> keys) {
@@ -118,7 +120,11 @@ final class RedisLockConnection {
         if (keys.isEmpty()) {
             return Collections.emptyList();
         }
-        return this.connection.sync()
-            .eval(script, ScriptOutputType.MULTI, keys.toArray(new String[0]), parameters);
+        return this.connection.sync().eval(
+            script,
+            ScriptOutputType.MULTI,
+            keys.toArray(new String[0]),
+            parameters
+        );
     }
 }
