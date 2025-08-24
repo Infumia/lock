@@ -1,11 +1,13 @@
 {
   "categories": [
-    { "title": "Breaking", "labels": ["breaking"] },
-    { "title": "New", "labels": ["enhancement"] },
+    { "title": "Breaking Changes", "labels": ["breaking"] },
+    { "title": "New Features", "labels": ["enhancement"] },
     { "title": "Bug Fixes", "labels": ["bug"] },
     { "title": "Maintenance", "labels": ["maintenance"] },
-    { "title": "Documentation", "labels": ["documentation"] },
-    { "title": "Dependency Updates", "labels": ["dependencies"] }
+    { "title": "Documentation", "labels": ["documentation"] }
   ],
-  "ignore_labels": ["skip-changelog"]
+  "ignore_labels": ["skip-changelog"],
+  "change_template": "- {{subject}} ({{author}}) [#{{pullRequestNumber}}]",
+  "group_by": "labels",
+  "sort": "date"
 }
