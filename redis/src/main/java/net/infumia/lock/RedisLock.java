@@ -9,26 +9,87 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 
+/**
+ * Redis-based implementation of the {@link Lock} interface providing distributed
+ * locking capabilities across multiple processes and machines.
+ * <p>
+ * This implementation uses Redis as the coordination service, leveraging Redis's
+ * atomic operations and Lua scripting to ensure consistent lock behavior in
+ * distributed environments. Each lock instance is identified by a unique UUID
+ * to provide proper ownership tracking and prevent accidental releases by
+ * different processes.
+ * </p>
+ *
+ * <p><strong>Distributed Lock Semantics:</strong></p>
+ * <ul>
+ *   <li><strong>Non-reentrant:</strong> A lock instance cannot acquire the same
+ *       lock multiple times</li>
+ *   <li><strong>Exclusive:</strong> Only one process can hold a given lock at a time</li>
+ *   <li><strong>Time-bounded:</strong> Locks automatically expire to prevent deadlocks</li>
+ *   <li><strong>Atomic operations:</strong> All Redis operations use Lua scripts
+ *       for atomicity</li>
+ * </ul>
+ *
+ * <p><strong>Lock Acquisition Algorithm:</strong></p>
+ * <ol>
+ *   <li>Attempt to set the lock key in Redis with NX (not exists) flag</li>
+ *   <li>If successful, store the unique instance ID as the value</li>
+ *   <li>Set expiry time to prevent indefinite lock holding</li>
+ *   <li>If unsuccessful, poll at configured intervals until timeout</li>
+ * </ol>
+ *
+ * <p><strong>Thread Safety:</strong> This class is thread-safe. All operations
+ * are properly synchronized to prevent race conditions between concurrent
+ * operations on the same lock instance.</p>
+ *
+ * <p><strong>Network Resilience:</strong> The implementation handles common
+ * network issues:
+ * <ul>
+ *   <li>Connection timeouts are handled by the underlying Redis client</li>
+ *   <li>Lock expiry prevents indefinite holding if network partitions occur</li>
+ *   <li>Ownership verification prevents accidental releases after reconnection</li>
+ * </ul>
+ * </p>
+ *
+ * <p><strong>Performance Characteristics:</strong></p>
+ * <ul>
+ *   <li><strong>Acquisition latency:</strong> Single round-trip to Redis plus polling interval</li>
+ *   <li><strong>Memory usage:</strong> Minimal - only stores instance ID in Redis</li>
+ *   <li><strong>Network overhead:</strong> One Redis command per operation</li>
+ * </ul>
+ *
+ * @see Lock
+ * @see RedisLockProvider
+ */
 public final class RedisLock implements Lock {
 
-    /* User provided */
     private final String key;
     private final Duration acquireTimeout;
     private final long acquireResolutionTimeMillis;
-
-    /* System provided */
     private final RedisLockConnection connection;
-
     private boolean holdingLock;
 
+    /**
+     * Creates a new Redis-based distributed lock.
+     * <p>
+     * This constructor is typically called by {@link RedisLockProvider} and should
+     * not be used directly by application code.
+     * </p>
+     *
+     * @param key the Redis key for this lock (including any necessary prefixes)
+     * @param acquireTimeout default timeout for lock acquisition attempts
+     * @param expiryTimeout how long the lock remains valid after acquisition
+     * @param executor executor for asynchronous operations
+     * @param acquireResolutionTimeMillis polling interval for acquisition attempts
+     * @param lockInstanceId unique identifier for this lock instance (for ownership tracking)
+     * @param connection the Redis connection to use for this lock
+     */
     public RedisLock(
-        /* User provided */
         final String key,
         final Duration acquireTimeout,
         final Duration expiryTimeout,
         final Executor executor,
         final long acquireResolutionTimeMillis,
-        /* System provided */
         final UUID lockInstanceId,
         final StatefulRedisConnection<String, String> connection
     ) {

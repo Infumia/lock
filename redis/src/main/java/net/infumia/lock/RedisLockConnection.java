@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 final class RedisLockConnection {
 
     private final ReentrantLock lock = new ReentrantLock();
-
     private final String lockInstanceId;
     private final StatefulRedisConnection<String, String> connection;
     private final Duration expiryTimeout;
