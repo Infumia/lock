@@ -39,13 +39,6 @@ spotless {
         jackson().yamlFeature("LITERAL_BLOCK_STYLE", true).yamlFeature("SPLIT_LINES", false)
     }
 
-    json {
-        target("renovate.json")
-        endWithNewline()
-        trimTrailingWhitespace()
-        jackson()
-    }
-
     format("toml") {
         target("gradle/libs.versions.toml")
         endWithNewline()

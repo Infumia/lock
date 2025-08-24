@@ -1,11 +1,58 @@
 {
   "categories": [
-    { "title": "Breaking", "labels": ["breaking"] },
-    { "title": "New", "labels": ["enhancement"] },
-    { "title": "Bug Fixes", "labels": ["bug"] },
-    { "title": "Maintenance", "labels": ["maintenance"] },
-    { "title": "Documentation", "labels": ["documentation"] },
-    { "title": "Dependency Updates", "labels": ["dependencies"] }
+    {
+      "title": "💥 Breaking Changes",
+      "labels": [
+        "breaking"
+      ],
+      "priority": 1
+    },
+    {
+      "title": "✨ New Features",
+      "labels": [
+        "enhancement"
+      ],
+      "priority": 2
+    },
+    {
+      "title": "🐛 Bug Fixes",
+      "labels": [
+        "bug"
+      ],
+      "priority": 3
+    },
+    {
+      "title": "🛠 Maintenance",
+      "labels": [
+        "maintenance"
+      ],
+      "priority": 4
+    },
+    {
+      "title": "📚 Documentation",
+      "labels": [
+        "documentation"
+      ],
+      "priority": 5
+    },
+    {
+      "title": "🔧 Other Updates",
+      "labels": [],
+      "priority": 6
+    }
   ],
-  "ignore_labels": ["skip-changelog"]
+  "ignore_labels": [
+    "skip-changelog"
+  ],
+  "group_by": "labels",
+  "sort": "priority",
+  "change_template": "- {{subject}}{{#if author}} (by [{{author}}](https://github.com/{{author}})){{/if}}{{#if issues}} (closes {{#each issues}}[#{{this.number}}]({{this.url}}){{#unless @last}}, {{/unless}}{{/each}}){{/if}} [#[{{pullRequestNumber}}]({{pullRequestUrl}})]",
+  "highlights": {
+    "enabled": true,
+    "labels": [
+      "breaking",
+      "enhancement"
+    ],
+    "title": "🚀 Highlights"
+  }
 }
