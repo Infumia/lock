@@ -34,7 +34,7 @@
   "ignore_labels": [
     "skip-changelog"
   ],
-  "change_template": "- {{subject}} [#{{pullRequestNumber}}]",
+  "change_template": "- {{subject}} (by {{author}}) [#{{pullRequestNumber}}]",
   "group_by": "labels",
   "sort": "date"
 }
