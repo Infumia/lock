@@ -5,7 +5,7 @@ spotless = "7.2.1"
 [libraries]
 redis = { module = "io.lettuce:lettuce-core", version = "6.8.1.RELEASE" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.10.2" }
-guava = { module = "com.google.guava:guava", version = "33.4.8-jre" }
+guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
 nexus-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.34.0" }
 kotlin-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
