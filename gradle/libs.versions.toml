@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.2.20"
-spotless = "7.2.1"
+spotless = "8.0.0"
 
 [libraries]
 redis = { module = "io.lettuce:lettuce-core", version = "6.8.1.RELEASE" }
