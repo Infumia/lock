@@ -9,7 +9,7 @@ guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
 nexus-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.34.0" }
 kotlin-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
-dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "2.0.0" }
+dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "2.1.0" }
 
 [plugins]
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
