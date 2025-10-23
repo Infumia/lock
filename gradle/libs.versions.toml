@@ -3,7 +3,7 @@ kotlin = "2.2.21"
 spotless = "8.0.0"
 
 [libraries]
-redis = { module = "io.lettuce:lettuce-core", version = "6.8.1.RELEASE" }
+redis = { module = "io.lettuce:lettuce-core", version = "7.0.0.RELEASE" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.10.2" }
 guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
