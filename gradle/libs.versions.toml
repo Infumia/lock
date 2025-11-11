@@ -7,7 +7,7 @@ redis = { module = "io.lettuce:lettuce-core", version = "7.0.0.RELEASE" }
 kotlinx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.10.2" }
 guava = { module = "com.google.guava:guava", version = "33.5.0-jre" }
 
-nexus-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.34.0" }
+nexus-plugin = { module = "com.vanniktech:gradle-maven-publish-plugin", version = "0.35.0" }
 kotlin-plugin = { module = "org.jetbrains.kotlin.jvm:org.jetbrains.kotlin.jvm.gradle.plugin", version.ref = "kotlin" }
 dokka-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "2.1.0" }
 
